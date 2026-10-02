@@ -1,0 +1,12 @@
+name: ai-modeling-reasoning-labs
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - jupyterlab
+  - notebook
+  - ipykernel
+  - networkx
+  - matplotlib
+  - numpy
+  - pandas
