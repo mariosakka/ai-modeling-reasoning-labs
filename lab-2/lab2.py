@@ -102,3 +102,31 @@ print("Example 4:", result)
 # Think about it: is this False, or a concrete counterexample?
 # What does that tell us about the argument?
  
+
+
+# Personal example from my field:
+#   If the AI agent gets a vague prompt, it writes buggy code.
+#   If the AI agent writes buggy code, the code ships a bug.
+#   If the code ships a bug, production has an outage.
+#   The prompt was clear and detailed (not vague).
+#   Therefore, production will have no outage.
+vague_prompt, buggy_code, bug_ships, outage = symbols("vague_prompt buggy_code bug_ships outage")
+
+premises = And(
+    Implies(vague_prompt, buggy_code),
+    Implies(buggy_code, bug_ships),
+    Implies(bug_ships, outage),
+    Not(vague_prompt),
+)
+conclusion = Not(outage)
+
+result = satisfiable(And(premises, Not(conclusion)))
+print("My example:", result)  
+
+# Where propositional logic breaks (my field):
+#   "Every function that takes user input must validate it.
+#    login() takes user input. So login() must validate it."
+#   Propositional logic needs one symbol and one rule PER function
+#   (login_takes_input -> login_validates, signup_takes_input -> signup_validates, ...),
+#   and every new function means new rules.
+#   First-order logic says it once: ForAll f. TakesInput(f) -> Validates(f)
