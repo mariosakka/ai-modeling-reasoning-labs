@@ -25,11 +25,27 @@ rain, ground_wet = symbols("rain ground_wet")
 # TODO: write the rule (if rain, then ground_wet), combined
 # with the fact that it IS raining, using And() and Implies().
 premises   = And(Implies(rain, ground_wet), rain)
-conclusion = ground_wet
+conclusion = Not(ground_wet)  
  
 check = And(premises, Not(conclusion))
  
 print("Example 1:", satisfiable(check))
+
+
+"""
+If it rains ground is wet
+Its raining
+The ground must be wet
+
+
+The ground is not wet
+
+The inverse of the conclusion is false -> conclusion is true
+
+There is an example in which the opposite of the conclusion is not true, conclusion true
+
+Ground is wet & ground is not wet -> contradiction -> opposite of conclusion is false -> conclusion is true
+"""
  
  
 # ============================================================
